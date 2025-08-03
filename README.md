@@ -1,4 +1,4 @@
-# LLaMA Setup on VACC HPC with VS Code
+# Llama Setup on VACC HPC with VS Code
 
 This guide explains how to connect to the VACC cluster via SSH, set up a Conda environment, and prepare to run vacc existing Llama models in VS Code
 
@@ -48,6 +48,8 @@ export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 ```
 
+## Extra Resources
+[Fine-tuning](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
 
 
 
