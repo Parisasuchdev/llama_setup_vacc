@@ -47,9 +47,27 @@ conda activate llama_setup
 ```
 
 ## Step 5: Start Jupyter Notebook
+To launch a Jupyter Notebook on VACC using SLURM:
 ```bash
 sh jupyter_setup/start-jupyter.sh nvgpu
 ```
+- nvgpu, in this commad, is the job name its log file will be saved at `jupyter_setup/tmp/nvgpu.out'. Can be changed to any name
+- Once the job starts, you will see a Jupyter Notebook URL in the terminal and also in `jupyter_setup/tmp/nvgpu.out'
+- Once you get the URL/resources in the terminal, click it (or copy–paste it into your browser) and make sure it opens without errors
+- In Jupyter Notebook, select kernel > existing jupyter server > enter a remote URL you received
+
+**Note:**  
+- Replace `your.email@uvm.edu` with your UVM email to receive job notifications  
+- Adjust `--time`, `--mem`, and `--gres` according to your resource needs
+
+## Notebooks Overview
+
+- **01_run_llama.ipynb**  
+  Runs a single hard‑coded example of stance classification using a LLaMA model.  
+
+- **02_template.ipynb**  
+  - Extends `01_run_llama.ipynb` by turning stance classification into a reusable pipeline for an entire dataset  
+  - Outputs structured JSON with fields instead of just classifying one example
 
 ## Run in Offline Mode (Optional)
 If your project requires strictly on-premises execution (no internet calls to Hugging Face Hub), set:
