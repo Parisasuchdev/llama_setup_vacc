@@ -33,7 +33,7 @@ conda activate llama_setup
 conda install jupyter -y
 
 # Install key packages
-conda install transformers torch -y
+pip install transformers torch
 ```
 ### Option B: Using an Environment YAML
 ```bash 
@@ -47,6 +47,11 @@ If your project requires strictly on-premises execution (no internet calls to Hu
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 ```
+## Step 5: Clone this repo
+```bash
+git clone https://github.com/Parisasuchdev/llama_setup_vacc.git
+```
+
 ## Step 5: Start Jupyter Notebook
 ```bash
 sh jupyter_setup/start-jupyter.sh nvgpu
