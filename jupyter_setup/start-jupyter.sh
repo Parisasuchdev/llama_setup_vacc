@@ -7,7 +7,7 @@ jup_outfile="$out_dir/$joboutname.out"
 > "$jup_outfile"  # Clear the output file
 
 # Submit job and wait for output
-sbatch --output="$jup_outfile" jupyter-server.sbatch
+sbatch --output="$jup_outfile" jupyter_setup/jupyter-server.sbatch
 
 echo "Jupyter notebook server starting on compute node, waiting..."
 # Wait for notebook server to start
