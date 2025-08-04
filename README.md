@@ -56,14 +56,16 @@ sh jupyter_setup/start-jupyter.sh nvgpu
 - Once you get the URL/resources in the terminal, click it (or copy–paste it into your browser) and make sure it opens without errors
 - In Jupyter Notebook, select kernel > existing jupyter server > enter a remote URL you received
 
-**Note:**  
+**Notes:**  
 - Replace `your.email@uvm.edu` with your UVM email to receive job notifications  
 - Adjust `--time`, `--mem`, and `--gres` according to your resource needs
+- The `jupyter_setup/tmp/` directory stores SLURM output logs for each job
 
 ## Notebooks Overview
 
-- **01_run_llama.ipynb**  
-  Runs a single hard‑coded example of stance classification using a LLaMA model.  
+- **01_run_llama.ipynb** 
+   - contains hard coded example of stance classification
+   - Recommended as the first notebook to run in order to confirm that all required libraries and the environment are set up correctly and to play with prompt and params  
 
 - **02_template.ipynb**  
   - Extends `01_run_llama.ipynb` by turning stance classification into a reusable pipeline for an entire dataset  
