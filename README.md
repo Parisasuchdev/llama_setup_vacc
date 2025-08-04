@@ -1,8 +1,15 @@
 # Llama Setup on VACC HPC with VS Code
 
-This guide explains how to connect to the VACC cluster via SSH, set up a Conda environment, and prepare to run vacc existing Llama models in VS Code
+This guide explains how to connect to the VACC cluster via SSH, set up a Conda environment, start jupyter notebook without using vacc on demand and prepare to run vacc existing Llama models in VS Code
 
----
+## Models Available
+The current notebook example demonstrates how to work with **Hugging Face (HF) models**.  
+More models are available in the following directory: `/gpfs1/llm/` on VACC
+This directory contains:
+- **Meta models** (e.g., Meta’s llama series)
+- **Additional Hugging Face (HF) models**
+
+The included notebooks (`01_run_llama.ipynb` and `02_template.ipynb`) currently demonstrate only HF models and to use the Meta models, you may need to adjust paths and/or tokenizer configurations
 
 ## Step 1: Connect VS Code with SSH
 
