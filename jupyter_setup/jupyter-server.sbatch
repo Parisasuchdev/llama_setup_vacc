@@ -2,10 +2,13 @@
 #SBATCH --partition=nvgpu
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --mem=60G
+#SBATCH --mem=20G
 #SBATCH --gres=gpu:1
 #SBATCH --time=2:00:00
-#SBATCH --job-name=retrieval
+#SBATCH --job-name=jupyter
+#SBATCH --mail-type=BEGIN,END,FAIL       # send emails on job begin, end, and fail
+#SBATCH --mail-user=your.email@uvm.edu # replace with your actual email
+
 # Receive emails when job begins and ends or fails
 
 source ~/.bash_profile
