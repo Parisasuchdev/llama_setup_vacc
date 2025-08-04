@@ -12,7 +12,12 @@ This guide explains how to connect to the VACC cluster via SSH, set up a Conda e
    ssh [username]@login.vacc.uvm.edu
    ```
 
-## Step 2: Check if Conda is Accessible
+## Step 2: Clone this repo
+```bash
+git clone https://github.com/Parisasuchdev/llama_setup_vacc.git
+```
+
+## Step 3: Check if Conda is Accessible
 Run:
 ```bash 
 conda --version
@@ -23,7 +28,7 @@ If conda is not available, load the appropriate module:
 module load python3.11-anaconda/2024.02-1
 ```
 
-## Step 3: Create a Conda Environment for Llama
+## Step 4: Create a Conda Environment for Llama
 ### Option A: Manual Setup
 ```bash
 conda create -n llama_setup -y
@@ -41,20 +46,16 @@ conda env create -f environment.yml
 conda activate llama_setup
 ```
 
-## Step 4: Run in Offline Mode (Optional)
+## Step 5: Start Jupyter Notebook
+```bash
+sh jupyter_setup/start-jupyter.sh nvgpu
+```
+
+## Step 6: Run in Offline Mode (Optional)
 If your project requires strictly on-premises execution (no internet calls to Hugging Face Hub), set:
 ```bash
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
-```
-## Step 5: Clone this repo
-```bash
-git clone https://github.com/Parisasuchdev/llama_setup_vacc.git
-```
-
-## Step 5: Start Jupyter Notebook
-```bash
-sh jupyter_setup/start-jupyter.sh nvgpu
 ```
 
 ## Extra Resources
