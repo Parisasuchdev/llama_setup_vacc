@@ -38,7 +38,7 @@ conda activate llama_setup
 conda install jupyter -y
 
 # Install key packages
-pip install transformers torch
+pip install transformers torch accelerate
 ```
 ### Option B: Using an Environment YAML
 ```bash 
@@ -51,7 +51,7 @@ conda activate llama_setup
 sh jupyter_setup/start-jupyter.sh nvgpu
 ```
 
-## Step 6: Run in Offline Mode (Optional)
+## Run in Offline Mode (Optional)
 If your project requires strictly on-premises execution (no internet calls to Hugging Face Hub), set:
 ```bash
 export HF_HUB_OFFLINE=1
