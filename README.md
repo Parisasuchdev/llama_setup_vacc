@@ -89,7 +89,14 @@ export TRANSFORMERS_OFFLINE=1
 [Fine-tuning](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
 
 
+## A note on package manager
 
+Instead of using `conda`, we also have a `requirements.txt`, best used with `uv` package manager as
+```bash
+# using python=3.11 instead of python=3.13 implicit in the environment.yml
+uv venv --python 3.11 .venv
+uv pip install -r requirements.txt
+```
 
 
 
