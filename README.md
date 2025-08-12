@@ -71,6 +71,24 @@ conda env create -f environment.yml
 conda activate llama_setup
 ```
 
+### Option C - No Conda, just use [uv](https://github.com/astral-sh/uv) (JSO))
+
+You can install [uv](https://github.com/astral-sh/uv) package manager using
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then, i think that doing 
+```bash
+uv sync 
+```
+should be enough to create a virtual environment and install all the necessary libraries. To run some notebooks using spacy, you need to download the spacy model using
+
+```bash
+uv run python -m spacy download en_core_web_trf
+```
+Overall, `uv` is much faster and smarter than conda. Reconciling dependencies take forever on conda, especially when dealing with LLMs stack.
+
 ---
 
 ## 6. Directory Structure
