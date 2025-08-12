@@ -71,6 +71,25 @@ conda env create -f environment.yml
 conda activate llama_setup
 ```
 
+### Option C - No Conda, just use [uv](https://github.com/astral-sh/uv) (JSO)
+
+You can install [uv](https://github.com/astral-sh/uv) package manager using
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then, you can use `sync` to install the dependencies
+```bash
+uv sync 
+```
+
+It should also create a virtual environment available in vscode. To run some notebooks, you will also need to download the following spacy's transformer model
+
+```bash
+uv run python -m spacy download en_core_web_trf
+```
+Overall, `uv` is much faster and smarter than conda. Reconciling dependencies take forever on conda, especially when dealing with LLMs stack.
+
 ---
 
 ## 6. Directory Structure
@@ -145,3 +164,4 @@ export TRANSFORMERS_OFFLINE=1
 
 ## 9. Extra Resources
 - [Fine-tuning LLaMA models](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
+

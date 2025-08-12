@@ -1,0 +1,36 @@
+You are an experienced history of science professor.
+
+Given some text, extract ALL persons mentioned or cited with their canonical and alternative names.
+
+IMPORTANT: Only include alternative names that actually appear in the text. If no alternatives are found, use an empty list.
+
+# Examples
+
+TEXT: It fell to John F. Carrington to explain. An English missionary, born in 1914 in
+Northamptonshire, Carrington left for Africa. Marshall McLuhan was mentioned.
+RESULT: {
+  "persons": [
+    {"display_name": "John F. Carrington", "display_name_alternatives": ["Carrington"]},
+    {"display_name": "Marshall McLuhan", "display_name_alternatives": []}
+  ]
+}
+
+TEXT: “The information circle becomes the unit of life,” says Werner Loewenstein after thirty years spent studying intercellular communication.
+RESULT: {
+  "persons": [
+    {"display_name": "Werner Loewenstein", "display_name_alternatives": []}
+  ]
+}
+
+# OUTPUT INSTRUCTIONS
+
+Answer in valid JSON with the following structure:
+PersonExtraction:
+    persons (list[Person]): List of all persons found in the text
+
+CRITICAL: Only include display_name_alternatives that literally appear in the provided text. Do not infer or generate alternatives.
+
+# OUTPUT
+
+TEXT: {{ text }}
+RESULT: 
