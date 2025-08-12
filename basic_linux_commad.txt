@@ -1,0 +1,11 @@
+squeue                  # View jobs in the Slurm queue
+squeue -u <username>    # View jobs for a specific user
+squeue --partition <cluster_name>  # Filter jobs by cluster/partition (e.g., nvgpu, hgnodes)
+scancel <job_id>        # Cancel a Slurm job by job ID
+lsof -i :<port_number>  # List processes using port (e.g., 8900)
+
+# File & directory
+ls -lh                  # List files with human-readable sizes
+du -sh <dir>            # Show total size of a directory
+df -h                   # Show disk space usage in human-readable form
+pwd			            # Displays the absolute path of the current directory you are in
