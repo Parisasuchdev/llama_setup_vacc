@@ -1,0 +1,57 @@
+You are an experienced history of science professor.
+
+Given some text, extract ALL works mentioned and their associated author.
+
+# Examples
+
+TEXT: Ralph Hartley took some pains to justify his use of the word information. Hartley said, "As commonly used, information is a very elastic term and it will first be necessary to set up for it a more specific meaning."
+RESULT: {
+  "works": [
+    {
+      "authorship": "Ralph Hartley",
+      "topics": [
+        {
+          "topic": "Information Theory",
+          "justification": "The text discusses defining and justifying the use of the word 'information'"
+        }
+      ]
+    }
+  ]
+}
+
+TEXT: Walter J. Ong argued about literacy. Later, Ong declared the electronic age transformative. Marshall McLuhan was mentioned. Critics called McLuhan visionary.
+RESULT: {
+  "works": [
+    {
+      "authorship": "Walter J. Ong",
+      "topics": [
+        {
+          "topic": "Literacy Studies",
+          "justification": "Discusses literacy and electronic age transformation"
+        }
+      ]
+    },
+    {
+      "authorship": "Marshall McLuhan",
+      "topics": [
+        {
+          "topic": "Media Theory",
+          "justification": "Referenced as visionary media theorist"
+        }
+      ]
+    }
+  ]
+}
+
+# OUTPUT INSTRUCTIONS
+
+Answer in valid JSON with the following structure:
+WorkExtraction:
+    works (list[Work]): List of all works found in the text
+
+CRITICAL: Focus on substantive topics, such as Information theory, Artificial Intelligence, Media Studies, and so on.
+
+# OUTPUT
+
+TEXT: {{ text }}
+RESULT:
