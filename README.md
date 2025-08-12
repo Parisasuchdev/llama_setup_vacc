@@ -71,18 +71,19 @@ conda env create -f environment.yml
 conda activate llama_setup
 ```
 
-### Option C - No Conda, just use [uv](https://github.com/astral-sh/uv) (JSO))
+### Option C - No Conda, just use [uv](https://github.com/astral-sh/uv) (JSO)
 
 You can install [uv](https://github.com/astral-sh/uv) package manager using
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Then, i think that doing 
+Then, you can use `sync` to install the dependencies
 ```bash
 uv sync 
 ```
-should be enough to create a virtual environment and install all the necessary libraries. To run some notebooks using spacy, you need to download the spacy model using
+
+It should also create a virtual environment available in vscode. To run some notebooks, you will also need to download the following spacy's transformer model
 
 ```bash
 uv run python -m spacy download en_core_web_trf
