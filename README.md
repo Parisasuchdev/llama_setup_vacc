@@ -94,27 +94,48 @@ Overall, `uv` is much faster and smarter than conda. Reconciling dependencies ta
 
 ## 6. Directory Structure
 
-```
+```bash
 llama_setup_vacc/
+├── basic_linux_commad.txt        # Helpful HPC/Linux commands
+├── environment.yml               # Conda environment file
 ├── jupyter_setup/
-│   ├── jupyter-server.sbatch      # SLURM script to start Jupyter on GPU node
-│   ├── start-jupyter.sh           # Helper to submit job and set up port forwarding
-│   └── tmp/                       # Stores SLURM output logs for Jupyter jobs
-├── src/
-│   ├── 01_run_llama.ipynb         # HF model stance classification demo
-│   ├── 02_template.ipynb          # Dataset pipeline version of above
-└── basic_linux_commands.txt       # Helpful HPC/Linux commands
-└── environment.yml                # Conda environment file
+│   ├── jupyter-server.sbatch     # SLURM script to start Jupyter on GPU node
+│   ├── start-jupyter.sh          # Helper to submit job and set up port forwarding
+│   └── tmp/                      # Stores SLURM output logs for Jupyter jobs
+├── pyproject.toml.               # uv pyproject.toml
+├── src
+│   ├── 01_run_llama.ipynb        # HF model stance classification demo
+│   ├── 02_template.ipynb         # Dataset pipeline version of above
+│   ├── 03_validating_NER.ipynb   # Doing NER using LLMs, validating with Spacy
+│   ├── 04_knowledge_graph.ipynb  # Llama_cpp model for knowledge graph extraction
+│   └── templates                 # prompt templates
+│       └── 03_validating_NER
+│           ├── prompt_0.txt
+│           └── prompt_1.txt
+└── uv.lock                       # uv lock file
 ```
 
 ### Notebook Details
 - **`01_run_llama.ipynb`**
-  - Hard-coded example of stance classification
+  - Hard-coded example of stance classification using transformers pipeline
   - Good first run to verify environment setup
   - Play with prompts and parameters
+- **`01b_run_llama_outlines.ipynb`**
+  - Enhanced version using Outlines for structured generation
+  - Demonstrates Enums, Pydantic models, and Template system
+  - Shows JSON-structured responses with confidence scoring
 - **`02_template.ipynb`**
-  - Turns stance classification into a reusable dataset pipeline
-  - Outputs structured JSON results
+  - Extends basic classification to batch processing pipeline
+  - Applies stance classification to entire datasets
+  - Outputs structured CSV with expanded classification results
+- **`03_validating_NER.ipynb`**
+  - Named Entity Recognition validation using LLMs vs SpaCy
+  - Uses Outlines for structured Person entity extraction
+  - Demonstrates validation workflows and prompt engineering
+  - Includes multiple prompt templates in `templates/03_validating_NER/`
+- **`04_knowledge_graph.ipynb`**
+  - Knowledge graph extraction using llama-cpp-python
+  - Structured entity and relationship extraction
 
 ---
 
