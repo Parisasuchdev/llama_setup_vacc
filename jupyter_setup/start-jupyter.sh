@@ -1,7 +1,7 @@
 #!/bin/bash
 
 joboutname=$1
-out_dir=tmp
+out_dir="jupyter_setup/tmp"   # put tmp inside jupyter_setup
 mkdir -p "$out_dir"
 jup_outfile="$out_dir/$joboutname.out"
 > "$jup_outfile"  # Clear the output file
