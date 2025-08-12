@@ -1,97 +1,147 @@
 # Llama Setup on VACC HPC with VS Code
 
-This guide explains how to connect to the VACC cluster via SSH, set up a Conda environment, start jupyter notebook without using vacc on demand and prepare to run vacc existing Llama models in VS Code
+This guide explains how to connect to the UVM VACC cluster via SSH, set up a Conda environment, and start a Jupyter Notebook **without using VACC OnDemand** — so you can work directly in VS Code with available Llama and Hugging Face models **especially when you data needs to be on-premises**.
 
-## Models Available
-The current notebook example demonstrates how to work with **Hugging Face (HF) models**.  
-More models are available in the following directory: `/gpfs1/llm/` on VACC
+---
+
+## 1. Models Available
+
+Models are stored in:
+```
+/gpfs1/llm/
+```
 This directory contains:
-- **Meta models** (e.g., Meta’s llama series)
+- **Meta models** (e.g., llama series)
 - **Additional Hugging Face (HF) models**
 
-The included notebooks (`01_run_llama.ipynb` and `02_template.ipynb`) currently demonstrate only HF models and to use the Meta models, you may need to adjust paths and/or tokenizer configurations
+The provided example notebooks focus on Hugging Face models.  
+To use Meta models, you may need to adjust:
+- File paths
+- Tokenizer configurations
 
-## Step 1: Connect VS Code with SSH
+---
 
-1. Follow this tutorial: [VS Code SSH Setup](https://www.youtube.com/watch?v=HZxuuWlJ7_s&t=210s)
-2. Connect to VACC using:
+## 2. Connect VS Code to VACC
+
+1. Install the **VS Code Remote - SSH extension**.
+2. Follow this [VS Code SSH setup video](https://www.youtube.com/watch?v=HZxuuWlJ7_s&t=210s).
+3. Connect to VACC:
    ```bash
    ssh [username]@login.vacc.uvm.edu
    ```
 
-## Step 2: Clone this repo
+---
+
+## 3. Clone This Repository
 ```bash
 git clone https://github.com/Parisasuchdev/llama_setup_vacc.git
+cd llama_setup_vacc
 ```
 
-## Step 3: Check if Conda is Accessible
-Run:
-```bash 
+---
+
+## 4. Check Conda Availability
+```bash
 conda --version
 ```
-If conda is not available, load the appropriate module:
-
+If Conda is unavailable, load the module:
 ```bash
 module load python3.11-anaconda/2024.02-1
 ```
 
-## Step 4: Create a Conda Environment for Llama
-### Option A: Manual Setup
+---
+
+## 5. Create Conda Environment
+
+### Option A – Manual Setup
 ```bash
 conda create -n llama_setup -y
 conda activate llama_setup
 
-# Install Jupyter for running notebooks
+# Install Jupyter
 conda install jupyter -y
 
 # Install key packages
 pip install transformers torch accelerate
 ```
-### Option B: Using an Environment YAML
-```bash 
+
+### Option B – From environment.yml
+```bash
 conda env create -f environment.yml
 conda activate llama_setup
 ```
 
-## Step 5: Start Jupyter Notebook
-To launch a Jupyter Notebook on VACC using SLURM:
+---
+
+## 6. Directory Structure
+
+```
+llama_setup_vacc/
+├── jupyter_setup/
+│   ├── jupyter-server.sbatch      # SLURM script to start Jupyter on GPU node
+│   ├── start-jupyter.sh           # Helper to submit job and set up port forwarding
+│   └── tmp/                       # Stores SLURM output logs for Jupyter jobs
+├── src/
+│   ├── 01_run_llama.ipynb         # HF model stance classification demo
+│   ├── 02_template.ipynb          # Dataset pipeline version of above
+└── basic_linux_commands.txt       # Helpful HPC/Linux commands
+└── environment.yml                # Conda environment file
+```
+
+### Notebook Details
+- **`01_run_llama.ipynb`**
+  - Hard-coded example of stance classification
+  - Good first run to verify environment setup
+  - Play with prompts and parameters
+- **`02_template.ipynb`**
+  - Turns stance classification into a reusable dataset pipeline
+  - Outputs structured JSON results
+
+---
+
+## 7. Launch Jupyter Notebook via SLURM
+
+Run:
 ```bash
 sh jupyter_setup/start-jupyter.sh nvgpu
 ```
-- nvgpu, in this commad, is the job name its log file will be saved at `jupyter_setup/tmp/nvgpu.out'. Can be changed to any name
-- Once the job starts, you will see a Jupyter Notebook URL in the terminal and also in `jupyter_setup/tmp/nvgpu.out'
-- Once you get the URL/resources in the terminal, click it (or copy–paste it into your browser) and make sure it opens without errors
-- In Jupyter Notebook, select kernel > existing jupyter server > enter a remote URL you received
+Where:
+- `nvgpu` is your job name (output log stored at `jupyter_setup/tmp/nvgpu.out`).
 
-**Notes:**  
-- Replace `your.email@uvm.edu` with your UVM email to receive job notifications  
-- Adjust `--time`, `--mem`, and `--gres` according to your resource needs
-- The `jupyter_setup/tmp/` directory stores SLURM output logs for each job
+### What Happens
+1. Job is submitted to the GPU partition
+2. Script waits for the Jupyter server to start
+3. When ready, the terminal prints a **localhost URL with token**
+4. Open the URL in your browser
 
-## Notebooks Overview
+### Kernel Connection in VS Code
+- In the notebook interface:  
+  **Select Kernel → Existing Jupyter Server → Enter the remote URL printed by the script**
 
-- **01_run_llama.ipynb** 
-   - contains hard coded example of stance classification
-   - Recommended as the first notebook to run in order to confirm that all required libraries and the environment are set up correctly and to play with prompt and params  
+### SLURM Notifications
+Edit `jupyter-server.sbatch`:
+```bash
+#SBATCH --mail-user=your.email@uvm.edu
+```
+You’ll receive **job begin, end, and fail** notifications
 
-- **02_template.ipynb**  
-  - Extends `01_run_llama.ipynb` by turning stance classification into a reusable pipeline for an entire dataset  
-  - Outputs structured JSON with fields instead of just classifying one example
+### Resource Customization
+Adjust in `jupyter-server.sbatch`:
+- `--time` → Runtime (e.g., `2:00:00` for 2 hrs)
+- `--mem` → Memory (e.g., `20G`)
+- `--gres` → GPUs (e.g., `gpu:1`)
 
-## Run in Offline Mode (Optional)
-If your project requires strictly on-premises execution (no internet calls to Hugging Face Hub), set:
+---
+
+## 8. Run in Offline Mode (Optional)
+
+If no internet access to Hugging Face Hub is required:
 ```bash
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 ```
 
-## Extra Resources
-[Fine-tuning](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
+---
 
-
-
-
-
-
-
-
+## 9. Extra Resources
+- [Fine-tuning LLaMA models](https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article)
