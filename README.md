@@ -117,12 +117,25 @@ llama_setup_vacc/
 
 ### Notebook Details
 - **`01_run_llama.ipynb`**
-  - Hard-coded example of stance classification
+  - Hard-coded example of stance classification using transformers pipeline
   - Good first run to verify environment setup
   - Play with prompts and parameters
+- **`01b_run_llama_outlines.ipynb`**
+  - Enhanced version using Outlines for structured generation
+  - Demonstrates Enums, Pydantic models, and Template system
+  - Shows JSON-structured responses with confidence scoring
 - **`02_template.ipynb`**
-  - Turns stance classification into a reusable dataset pipeline
-  - Outputs structured JSON results
+  - Extends basic classification to batch processing pipeline
+  - Applies stance classification to entire datasets
+  - Outputs structured CSV with expanded classification results
+- **`03_validating_NER.ipynb`**
+  - Named Entity Recognition validation using LLMs vs SpaCy
+  - Uses Outlines for structured Person entity extraction
+  - Demonstrates validation workflows and prompt engineering
+  - Includes multiple prompt templates in `templates/03_validating_NER/`
+- **`04_knowledge_graph.ipynb`**
+  - Knowledge graph extraction using llama-cpp-python
+  - Structured entity and relationship extraction
 
 ---
 
