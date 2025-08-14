@@ -11,6 +11,7 @@
 #SBATCH --mail-user=yourNetID@uvm.edu
 
 source ~/.bash_profile
+source ~/.bashrc
 
 conda activate llama_setup
 module load gcc/13.3.0

@@ -14,21 +14,18 @@ This directory contains:
 - **Meta models** (e.g., llama series)
 - **Additional Hugging Face (HF) models**
 
-The provided example notebooks focus on Hugging Face models.  
 To use Meta models, you may need to adjust:
 - File paths
 - Tokenizer configurations
 
 ---
 
-## 2. Connect VS Code to VACC
+## 2. Tunnel VS Code to VACC
 
-1. Install the **VS Code Remote - SSH extension**.
-2. Follow this [VS Code SSH setup video](https://www.youtube.com/watch?v=HZxuuWlJ7_s&t=210s).
-3. Connect to VACC:
-   ```bash
-   ssh [username]@login.vacc.uvm.edu
-   ```
+ - Follow instructions from VACC website: https://www.uvm.edu/vacc/docs/beyond_basics/vscodetunnel/
+ - Select those options:
+
+ [INSERT IMAGE]
 
 ---
 
@@ -40,38 +37,7 @@ cd llama_setup_vacc
 
 ---
 
-## 4. Check Conda Availability
-```bash
-conda --version
-```
-If Conda is unavailable, load the module:
-```bash
-module load python3.11-anaconda/2024.02-1
-```
-
----
-
-## 5. Create Conda Environment
-
-### Option A – Manual Setup
-```bash
-conda create -n llama_setup -y
-conda activate llama_setup
-
-# Install Jupyter
-conda install jupyter -y
-
-# Install key packages
-pip install transformers torch accelerate
-```
-
-### Option B – From environment.yml
-```bash
-conda env create -f environment.yml
-conda activate llama_setup
-```
-
-### Option C - No Conda, just use [uv](https://github.com/astral-sh/uv) (JSO)
+### 4. Create virtual environment using `uv`
 
 You can install [uv](https://github.com/astral-sh/uv) package manager using
 ```bash
@@ -83,12 +49,7 @@ Then, you can use `sync` to install the dependencies
 uv sync 
 ```
 
-It should also create a virtual environment available in vscode. To run some notebooks, you will also need to download the following spacy's transformer model
-
-```bash
-uv run python -m spacy download en_core_web_trf
-```
-Overall, `uv` is much faster and smarter than conda. Reconciling dependencies take forever on conda, especially when dealing with LLMs stack.
+It should also create a virtual environment available in vscode.
 
 ---
 
@@ -97,13 +58,8 @@ Overall, `uv` is much faster and smarter than conda. Reconciling dependencies ta
 ```bash
 llama_setup_vacc/
 ├── basic_linux_commad.txt        # Helpful HPC/Linux commands
-├── environment.yml               # Conda environment file
-├── jupyter_setup/
-│   ├── jupyter-server.sbatch     # SLURM script to start Jupyter on GPU node
-│   ├── start-jupyter.sh          # Helper to submit job and set up port forwarding
-│   └── tmp/                      # Stores SLURM output logs for Jupyter jobs
 ├── pyproject.toml.               # uv pyproject.toml
-├── src
+├── get_started_notebooks
 │   ├── 01_run_llama.ipynb        # HF model stance classification demo
 │   ├── 02_template.ipynb         # Dataset pipeline version of above
 │   ├── 03_validating_NER.ipynb   # Doing NER using LLMs, validating with Spacy
