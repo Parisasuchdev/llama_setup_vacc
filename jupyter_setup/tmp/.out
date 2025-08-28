@@ -1,0 +1,15 @@
+Hostname: dg-gpunode07
+INFO:    Instance stats will not be available - requires cgroups v2 with systemd as manager.
+INFO:    instance started successfully
+time=2025-08-13T08:20:42.899-04:00 level=INFO source=routes.go:1234 msg="server config" env="map[CUDA_VISIBLE_DEVICES:0 GPU_DEVICE_ORDINAL:0 HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://0.0.0.0:11434 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/users/j/s/jstonge1/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:0 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES:0 http_proxy: https_proxy: no_proxy:]"
+time=2025-08-13T08:20:42.916-04:00 level=INFO source=images.go:479 msg="total blobs: 11"
+time=2025-08-13T08:20:42.918-04:00 level=INFO source=images.go:486 msg="total unused blobs removed: 0"
+time=2025-08-13T08:20:42.918-04:00 level=INFO source=routes.go:1287 msg="Listening on 0.0.0.0:11434 (version 0.9.0)"
+time=2025-08-13T08:20:42.927-04:00 level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
+time=2025-08-13T08:20:43.314-04:00 level=INFO source=types.go:130 msg="inference compute" id=GPU-12f3dcff-c2a8-629d-a763-27b534f07d06 library=cuda variant=v12 compute=7.0 driver=12.8 name="Tesla V100-SXM2-32GB" total="31.7 GiB" available="31.4 GiB"
+ollama_host is http://127.0.0.1:11434/api/chat
+[GIN] 2025/08/13 - 08:20:44 | 200 |      50.271µs |       127.0.0.1 | HEAD     "/"
+time=2025-08-13T08:20:44.567-04:00 level=INFO source=images.go:716 msg="request failed: Get \"https://registry.ollama.ai/v2/library/llama3.2/manifests/latest\": tls: failed to verify certificate: x509: certificate signed by unknown authority"
+Model pull failed (likely certificate/network issue), using existing models
+Ollama server running at http://127.0.0.1:11434/api/chat
+Server will run until job time limit (2 hours)
